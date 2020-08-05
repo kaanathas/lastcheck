@@ -1,9 +1,11 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: An include file to define pet endpoints
+  title: Swagger Petstore tiltle checked
   license:
     name: MIT
+servers:
+  - url: 'http://petstore.swagger.io/v1'
 paths:
   /pets:
     get:
@@ -29,9 +31,9 @@ paths:
                 type: string
           content:
             application/json:
-              schema: &ref_1
+              schema: &ref_2
                 type: array
-                items:
+                items: &ref_1
                   required:
                     - id
                     - name
@@ -63,7 +65,7 @@ paths:
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-              .url("http://undefinedundefined/pets?limit=SOME_INTEGER_VALUE")
+              .url("http://petstore.swagger.io/v1/pets?limit=SOME_INTEGER_VALUE")
               .get()
               .build();
 
@@ -76,7 +78,7 @@ paths:
             curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");
 
             curl_easy_setopt(hnd, CURLOPT_URL,
-            "http://undefinedundefined/pets?limit=SOME_INTEGER_VALUE");
+            "http://petstore.swagger.io/v1/pets?limit=SOME_INTEGER_VALUE");
 
 
             CURLcode ret = curl_easy_perform(hnd);
@@ -99,7 +101,7 @@ paths:
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-              .url("http://undefinedundefined/pets")
+              .url("http://petstore.swagger.io/v1/pets")
               .post(null)
               .build();
 
@@ -112,54 +114,12 @@ paths:
             curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "POST");
 
             curl_easy_setopt(hnd, CURLOPT_URL,
-            "http://undefinedundefined/pets");
+            "http://petstore.swagger.io/v1/pets");
 
 
             CURLcode ret = curl_easy_perform(hnd);
-  '/pets/{petId}':
-    get:
-      summary: Info for a specific pet
-      operationId: showPetById
-      tags:
-        - pets
-      parameters:
-        - name: petId
-          in: path
-          required: true
-          description: The id of the pet to retrieve
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema: *ref_1
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema: *ref_0
-      x-codeSamples:
-        - lang: Java + Okhttp
-          source: |-
-            OkHttpClient client = new OkHttpClient();
-
-            Request request = new Request.Builder()
-              .url("http://undefinedundefined/pets/%7BpetId%7D")
-              .get()
-              .build();
-
-            Response response = client.newCall(request).execute();
-        - lang: C + Libcurl
-          source: >-
-            CURL *hnd = curl_easy_init();
-
-
-            curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");
-
-            curl_easy_setopt(hnd, CURLOPT_URL,
-            "http://undefinedundefined/pets/%7BpetId%7D");
-
-
-            CURLcode ret = curl_easy_perform(hnd);
+components:
+  schemas:
+    Pet: *ref_1
+    Pets: *ref_2
+    Error: *ref_0

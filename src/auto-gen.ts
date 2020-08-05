@@ -1,5 +1,5 @@
 
-import {DocsCreation} from './SampleCodeGen'
+import {DocsCreation} from './sample-code-gen'
 
 export class AutoGenDoc{
 creation =new DocsCreation();

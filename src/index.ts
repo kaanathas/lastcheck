@@ -1,9 +1,9 @@
-import{AutoGenDoc} from './AutoGen'
+import{AutoGenDoc} from './auto-gen'
 
-var env:string[];
+
 process.argv.forEach((val, index) => {
     console.log(val+"  "+index+"    in node")
-    // env[index]=val;
+   
   });
 
  let startCreataion=new AutoGenDoc();

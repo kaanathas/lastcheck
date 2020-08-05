@@ -1,6 +1,6 @@
 export MY_COOL_NODE_APP=lib
 
-echo enter files path like Documents/openapiyamls
+echo enter openapi specs start file path like Documents/openapiyamls/petstore.yaml
 read search_dir
 
 
@@ -13,12 +13,13 @@ read zippath
 
  FILE_PATH="kaanathas"
 
-for entry in "$HOME/$search_dir"/*
+for entry in "$HOME/$search_dir"
 do
-
+echo $entry
  FILE_PATH=$entry
 
 done
+echo $FILE_PATH
 node $MY_COOL_NODE_APP/index.js $FILE_PATH $zipname $HOME/$zippath
 
 

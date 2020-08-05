@@ -1,6 +1,6 @@
 const cmd=require('node-cmd');
-import{Zipper} from './Zipping';
-import {Redochtml} from './RedochtmlGen';
+import{Zipper} from './zipping';
+import {Redochtml} from './redoc-html-gen';
 
 
 
@@ -32,7 +32,13 @@ async ReactDocCreate(filepathonserver:string){
     async (err:any, data:any, stderr:any)=>{
         console.log(stderr+" this run"+data)
         if(!err){
-        this.zipper.zipping()
+
+            try{
+                this.zipper.zipping()
+            }catch(e){
+                console.log(e)
+            }
+       
         }else{
             return data;
         }
